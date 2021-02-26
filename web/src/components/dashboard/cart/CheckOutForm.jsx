@@ -6,8 +6,10 @@ export default function CheckoutFrom() {
     const globalState = useGlobalState()
     globalState.cartData && globalState.cartData.cartItems.map(value => {
         delete value.price
-        delete value.id
+        delete value._id
         delete value.image
+        delete value.description
+        delete value.stock
     })
     function placeOrder(e) {
         e.preventDefault()
@@ -48,16 +50,16 @@ export default function CheckoutFrom() {
                             <div className="form-row">
                                 <div className="form-group col-md-6">
                                     <label htmlFor="inputEmail4">Name</label>
-                                    <input type="text" className="form-control" id="name" placeholder="Name" />
+                                    <input type="text" className="form-control" id="name" placeholder="Name" required />
                                 </div>
                                 <div className="form-group col-md-6">
                                     <label htmlFor="inputPassword4">Phone</label>
-                                    <input type="text" className="form-control" id="phone" placeholder="Phone" />
+                                    <input type="text" className="form-control" id="phone" placeholder="Phone" required/>
                                 </div>
                             </div>
                             <div className="form-group">
                                 <label htmlFor="inputAddress">Address</label>
-                                <input type="text" className="form-control" id="address" placeholder="1234 Main St" />
+                                <input type="text" className="form-control" id="address" placeholder="1234 Main St" required/>
                             </div>
                             <button type="submit" className="btn btn-primary">Confirm Order</button>
                         </form>

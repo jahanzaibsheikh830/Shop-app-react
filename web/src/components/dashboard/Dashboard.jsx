@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Basket from './cart/Basket';
 import products from './data';
 import Navbar from '../Navbar/Navbar'
+import BaseUrl from '../../baseUrl/BaseUrl'
 import axios from 'axios'
 import { useHistory } from "react-router-dom"
 import { useGlobalState, useGlobalStateUpdate } from '../../context/globalContext'
@@ -10,16 +11,31 @@ function Dashboard() {
     const globalState = useGlobalState()
     const globalStateUpdate = useGlobalStateUpdate()
     let history = useHistory()
-    const [hideCart,setHideCart] = useState(true)
+    const [hideCart, setHideCart] = useState(true)
+    const [products, setProducts] = useState([])
     const [cartItems, setCartItems] = useState([]);
-    
+    useEffect(() => {
+        axios({
+            method: 'get',
+            url: 'http://localhost:5000/getProducts',
+            withCredentials: true
+        }).then((response) => {
+            // console.log(response.data.data)
+            setProducts(response.data.data)
+        }).catch((err) => {
+            console.log(err)
+        })
+    }, [])
     ///////////////////////////////
+    console.log(products)
     const onAdd = (product) => {
-        const exist = cartItems.find((x) => x.id === product.id);
+        console.log(cartItems)
+
+        const exist = cartItems.find((x) => x._id === product._id);
         if (exist) {
             setCartItems(
                 cartItems.map((x) =>
-                    x.id === product.id ? { ...exist, qty: exist.qty + 1 } : x
+                    x._id === product._id ? { ...exist, qty: exist.qty + 1 } : x
                 )
             );
 
@@ -30,13 +46,13 @@ function Dashboard() {
     ///////////////////////////////
     ///////////////////////////////
     const onRemove = (product) => {
-        const exist = cartItems.find((x) => x.id === product.id);
+        const exist = cartItems.find((x) => x._id === product._id);
         if (exist.qty === 1) {
-            setCartItems(cartItems.filter((x) => x.id !== product.id));
+            setCartItems(cartItems.filter((x) => x._id !== product._id));
         } else {
             setCartItems(
                 cartItems.map((x) =>
-                    x.id === product.id ? { ...exist, qty: exist.qty - 1 } : x
+                    x._id === product._id ? { ...exist, qty: exist.qty - 1 } : x
                 )
             );
         }
@@ -69,26 +85,26 @@ function Dashboard() {
                 </div>
             </div>
             <div className="row1">
-            {hideCart ===true ?
-                <main className="container">
-                    <h1 className="text-center ">Products</h1>
-                    <div className="row">
-                        {products.map((product) => (
-                            <div className="col-md-4" key={product.id}>
-                                <div>
-                                    <img className="w-100" height="200" src={product.image} alt={product.name} />
-                                    <h3>{product.name}</h3>
-                                    <div>{product.price}Pkr</div>
+                {hideCart === true ?
+                    <main className="container">
+                        <h1 className="text-center mt-5 ">Products</h1>
+                        <div className="row">
+                            {products.map((product) => (
+                                <div className="col-md-4 mt-5" key={product.id}>
                                     <div>
-                                        <button onClick={() => onAdd(product)} className="btn btn-primary">Add To Cart</button>
+                                        <img className="w-100" height="200" src={product.image} alt={product.name} />
+                                        <h3>{product.name}</h3>
+                                        <div>PKR: {product.price}/- Per kg</div>
+                                        <div>
+                                            <button onClick={() => onAdd(product)} className="btn btn-primary">Add To Cart</button>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        ))}
-                    </div>
-                </main>:
-                <>
-                <Basket cartItems={cartItems} onAdd={onAdd} onRemove={onRemove}/></>}
+                            ))}
+                        </div>
+                    </main> :
+                    <>
+                        <Basket cartItems={cartItems} onAdd={onAdd} onRemove={onRemove} /></>}
             </div>
         </div>
     )

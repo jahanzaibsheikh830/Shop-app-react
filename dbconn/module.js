@@ -54,10 +54,10 @@ var foodOrderSchema = new mongoose.Schema({
 });
 var foodOrderModel = mongoose.model("orders", foodOrderSchema);
 var foodProductSchema = new mongoose.Schema({
-    "productName": String,
-    "productImage": String,
+    "name": String,
+    "image": String,
     "stock": Number,
-    "price": String,
+    "price": Number,
     "description": String,
     "isAvailable": String,
     "createdOn": { "type": Date, "default": Date.now },

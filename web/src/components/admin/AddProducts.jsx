@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Navbar from '../Navbar/Navbar'
 import axios from 'axios'
 import Url from '../../baseUrl/BaseUrl'
 function AddProducts() {
+    let [msg, setMsg] = useState()
 
     function addProduct(e) {
         e.preventDefault()
@@ -26,13 +27,15 @@ function AddProducts() {
             withCredentials: true
         })
             .then(response => {
-                console.log("response data=> ", response);
+                console.log("response data=> ", response.data);
+                setMsg(response.data.message)
             })
             .catch(err => {
                 console.log(err);
             })
 
     }
+    console.log(msg)
     return (
         <div>
             <Navbar />
@@ -72,7 +75,10 @@ function AddProducts() {
                                 </div>
                             </div>
                             <button type="submit" className="btn btn-primary">Confirm Order</button>
-                        </form>
+                        </form><br/>
+                        {msg ? <div class="alert alert-success" role="alert">
+                            {msg}
+                        </div> : null}
                     </div>
                 </div>
             </div>

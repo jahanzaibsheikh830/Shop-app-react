@@ -21,9 +21,7 @@ export function GlobalStateProvider({ children }) {
       withCredentials: true
     })
       .then((res) => {
-        console.log("context response", res);
         if (res.data.status === 200) {
-          console.log(res)
           setData((prev) => ({
             ...prev,
             user: res.data.profile,

@@ -7,10 +7,10 @@ export default function Basket(props) {
   const globalState = useGlobalState()
   const globalStateUpdate = useGlobalStateUpdate()  
   const { cartItems, onAdd, onRemove } = props;
+  console.log(cartItems)
   const itemsPrice = cartItems.reduce((a, c) => a + c.qty * c.price, 0);
   const totalPrice = itemsPrice;
   const history =useHistory()
-  
   
   function checkOut(){
     globalStateUpdate(prev=>({
@@ -38,7 +38,7 @@ export default function Basket(props) {
               </div>
 
               <div className="col-md-4 text-right">
-                {item.qty} x {item.price}Pkr
+                {item.qty} Kg x PKR {item.price}
             </div>
             </div>
           ))}
@@ -51,7 +51,7 @@ export default function Basket(props) {
                   <strong>Total Price</strong>
                 </div>
                 <div className="col-6 text-right">
-                  <strong>{totalPrice}Pkr</strong>
+                  <strong>PKR: {totalPrice}</strong>
                 </div>
               </div>
               <hr />

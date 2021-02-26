@@ -33,7 +33,6 @@ function AdminDashboard() {
         }).then((response) => {
             console.log(response.data.data)
             setOrderData(response.data.data)
-
         }).catch((err) => {
             console.log(err)
         })
@@ -47,25 +46,41 @@ function AdminDashboard() {
                     <h2 className="mr-4 text-white">Welcome admin</h2>
                 </div>
             </div>
-            <div>
+            <div className="container">
                 <table class="table">
                     <thead>
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">Name</th>
-                            <th scope="col">Email</th>
+                            <th scope="col">Address</th>
                             <th scope="col">Phone</th>
+                            <th scope="col">Products Name</th>
+                            <th scope="col"></th>
                         </tr>
                     </thead>
                     {
-                       orderData.map((value, index) => {
+                        orderData.map((value, index) => {
                             return (
                                 <tbody>
                                     <tr>
                                         <th scope="row">{index + 1}</th>
                                         <td>{value.name}</td>
-                                        <td>{value.email}</td>
+                                        <td>{value.address}</td>
                                         <td>{value.phone}</td>
+                                        <td>
+                                            <div className="dropdown">
+                                                <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    Orders
+                                            <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            {
+                                                value.orders.map((v,i)=>{
+                                                    return<a className="dropdown-item" href="#">{v.name} {v.qty}</a>
+                                                })
+                                            }
+                                            </div>
+                                            </button>   
+                                            </div>
+                                        </td>
                                     </tr>
                                 </tbody>
                             )
