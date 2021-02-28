@@ -5,8 +5,6 @@ import Navbar from '../../Navbar/Navbar'
 export default function CheckoutFrom() {
     const globalState = useGlobalState()
     globalState.cartData && globalState.cartData.cartItems.map(value => {
-        delete value.price
-        delete value._id
         delete value.image
         delete value.description
         delete value.stock

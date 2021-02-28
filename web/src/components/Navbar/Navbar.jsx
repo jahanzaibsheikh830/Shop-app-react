@@ -20,6 +20,9 @@ function Navbar(props) {
                                 <li className="nav-item active">
                                     <Link className="nav-link" to="/">Dashboard <span className="sr-only">(current)</span></Link>
                                 </li>
+                                <li className="nav-item active">
+                                    <Link className="nav-link" to="/myorders">My orders <span className="sr-only">(current)</span></Link>
+                                </li>
                             </ul>
                         </> :
                         <>

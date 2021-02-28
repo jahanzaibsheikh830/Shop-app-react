@@ -78,12 +78,8 @@ function Dashboard() {
     }
     return (
         <div>
-            <Navbar logout={logout} setCart={setHideCart} cartItemsLength={cartItems.length} />
-            <div className='bg-primary py-2'>
-                <div className="container">
-                    <h2 className="mr-4 text-white">Welcome {globalState.user.name} </h2>
-                </div>
-            </div>
+            {/* <Navbar logout={logout} setCart={setHideCart} cartItemsLength={cartItems.length} /> */}
+
             <div className="row1">
                 {hideCart === true ?
                     <main className="container">

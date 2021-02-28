@@ -47,6 +47,7 @@ var foodOrderSchema = new mongoose.Schema({
     "name": String,
     "email": String,
     "phone": String,
+    "status": String,
     "address": String,
     "total": String,
     "orders": Array,
