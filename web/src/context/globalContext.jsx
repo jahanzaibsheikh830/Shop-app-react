@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import axios from 'axios'
 import URL from '../baseUrl/BaseUrl'
+import url from "../baseUrl/BaseUrl";
 const GlobalStateContext = React.createContext()
 const GlobalStateUpdateContext = React.createContext()
 
@@ -18,7 +19,7 @@ export function GlobalStateProvider({ children }) {
   useEffect(() => {
     axios({
       method: "get",
-      url: +URL`/profile`,
+      url: url+`/profile`,
       withCredentials: true
     })
       .then((res) => {
