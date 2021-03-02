@@ -38,12 +38,6 @@ function AddProducts() {
     console.log(msg)
     return (
         <div>
-            <Navbar />
-            <div className='bg-primary py-2'>
-                <div className="container">
-                    <h2 className="mr-4 text-white">Welcome Admin</h2>
-                </div>
-            </div>
             <div className="container">
                 <div className="row justify-content-center">
                     <div className="col-md-6 mt-5">

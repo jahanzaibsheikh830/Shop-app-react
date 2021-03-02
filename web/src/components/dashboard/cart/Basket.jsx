@@ -7,8 +7,7 @@ export default function Basket(props) {
   const globalState = useGlobalState()
   const globalStateUpdate = useGlobalStateUpdate()  
   const { cartItems, onAdd, onRemove } = props;
-  console.log(cartItems)
-  const itemsPrice = cartItems.reduce((a, c) => a + c.qty * c.price, 0);
+  const itemsPrice =  cartItems.reduce((a, c) => a + c.qty * c.price, 0);
   const totalPrice = itemsPrice;
   const history =useHistory()
   

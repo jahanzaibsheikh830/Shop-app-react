@@ -1,30 +1,7 @@
 import React, { useEffect, useState } from "react";
-import Navbar from '../Navbar/Navbar'
 import axios from 'axios'
-import { useHistory } from "react-router-dom"
-import { useGlobalState, useGlobalStateUpdate } from '../../context/globalContext'
 function AdminDashboard() {
     let [orderData, setOrderData] = useState([])
-    const globalStateUpdate = useGlobalStateUpdate()
-    let history = useHistory()
-    function logout() {
-        axios({
-            method: 'post',
-            url: 'http://localhost:5000/logout',
-            withCredentials: true
-        }).then((response) => {
-            console.log(response)
-            globalStateUpdate(prev => ({
-                ...prev,
-                loginStatus: false,
-                role: null
-            }))
-            history.push("/login")
-
-        }, (error) => {
-            console.log(error);
-        });
-    }
     useEffect(() => {
         axios({
             method: 'get',
@@ -38,7 +15,7 @@ function AdminDashboard() {
         })
     }, [])
 
-    function updateStatus(id){
+    function updateStatus(id) {
         axios({
             method: 'post',
             url: 'http://localhost:5000/updateStatus',
@@ -48,8 +25,7 @@ function AdminDashboard() {
             },
             withCredentials: true
         }).then((response) => {
-            console.log(response.data.data)
-            setOrderData(response.data.data)
+            alert(response.data)
         }).catch((err) => {
             console.log(err)
         })
@@ -59,11 +35,11 @@ function AdminDashboard() {
         <div>
             <div className="container">
                 <h1 className='text-center mt-3 mb-3'>Customers Orders</h1>
-                <div className='row'>
+                <div className='row justify-content-center'>
                     {
-                       orderData && orderData.map((v, i) => {
+                        orderData.map((v, i) => {
                             return (
-                                <div className='col-md-5 mr-2 ml-2 mt-4 py-3 px-3' style={{ boxShadow: "0 0 10px grey" }}>
+                                <div className='col-md-5  mr-1 mt-4 py-3 px-3' style={{ boxShadow: "0 0 10px grey" }}>
                                     <div>
                                         <span>Name:</span>
                                         <span className='float-right'>{v.name}</span>
@@ -75,15 +51,14 @@ function AdminDashboard() {
                                     <div>
                                         <span>Phone:</span>
                                         <span className='float-right'>{v.phone}</span>
-                                    </div><hr/>
+                                    </div><hr />
                                     {
                                         v.orders.map((v, i) => {
                                             return (
                                                 <div>
                                                     <div className='row '>
-                                                        <div className='col-md-4'>{v.name}</div>
-                                                        <div className='col-md-4 text-center'>{v.price} PKR</div>
-                                                        <div className='col-md-4 text-right'>{v.qty} Kg</div>
+                                                        <div className='col-md-6'>{v.name}</div>
+                                                        <div className='col-md-6 text-right'>{v.qty} Kg * {v.price} PKR</div>
                                                     </div>
                                                 </div>
                                             )
@@ -96,7 +71,7 @@ function AdminDashboard() {
                                     </div>
                                     <div>
                                         <span className='float-right mt-2'>
-                                            <button onClick={()=>{
+                                            <button onClick={() => {
                                                 updateStatus(v._id)
                                             }} >Confirm Order</button>
                                         </span>
@@ -107,7 +82,7 @@ function AdminDashboard() {
                     }
                 </div>
             </div>
-        </div>
+        </div >
     )
 }
 

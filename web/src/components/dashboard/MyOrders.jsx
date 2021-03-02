@@ -20,11 +20,11 @@ function MyOrders() {
         <div>
             <div className="container">
                 <h1 className='text-center'>My Orders</h1>
-                <div className='row'>
+                <div className='row justify-content-center'>
                     {
                         myOrder.map((v, i) => {
                             return (
-                                <div className='col-md-5 mr-2 mt-4 ml-2 py-3 px-3' style={{boxShadow: "0 0 10px grey"}}>
+                                <div className='col-md-6 mr-2 mt-4 py-3 px-3' style={{boxShadow: "0 0 10px grey"}}>
                                     {
                                         v.orders.map((v, i) => {
                                             return (

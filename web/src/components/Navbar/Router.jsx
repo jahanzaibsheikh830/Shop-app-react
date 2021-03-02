@@ -10,6 +10,7 @@ import Basket from '../dashboard/cart/Basket'
 import CheckOutForm from '../dashboard/cart/CheckOutForm'
 import AddProducts from '../admin/AddProducts'
 import MyOrders from '../dashboard/MyOrders'
+import basket from '../dashboard/cart/Basket'
 import { useGlobalState } from '../../context/globalContext'
 import Navbar from '../Navbar/Navbar'
 function RoutesConfig() {
@@ -18,7 +19,6 @@ function RoutesConfig() {
     return (
         <div>
             <Router>
-                <Navbar />
                 {globalState.role === null ?
                     <div>
                         <Switch>
@@ -33,6 +33,7 @@ function RoutesConfig() {
 
                 {globalState.role === "user" ?
                     <>
+                        <Navbar />
                         <Route exact path="/" component={Dashboard} />
                         <Route path="/basket" component={Basket} />
                         <Route path="/myorders" component={MyOrders} />
@@ -45,6 +46,7 @@ function RoutesConfig() {
                 }
                 {globalState.role === "admin" ?
                     <>
+                        <Navbar />
                         <Route exact path="/" component={AdminDashboard} />
                         <Route exact path="/addproducts" component={AddProducts} />
                         <Route path="*" />

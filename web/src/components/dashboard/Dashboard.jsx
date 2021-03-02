@@ -59,27 +59,19 @@ function Dashboard() {
     };
     ///////////////////////////////
 
-    function logout() {
-        axios({
-            method: 'post',
-            url: 'http://localhost:5000/logout',
-            withCredentials: true
-        }).then((response) => {
-            console.log(response)
-            globalStateUpdate(prev => ({
-                ...prev,
-                loginStatus: false,
-                role: null
-            }))
-            history.push("/login")
-        }, (error) => {
-            console.log(error);
-        });
-    }
     return (
         <div>
             {/* <Navbar logout={logout} setCart={setHideCart} cartItemsLength={cartItems.length} /> */}
-
+            <div className='bg-primary pt-3 pb-5 sticky-top'>
+                <div className="container">
+                    <div className="col-md-12">
+                    <a className="btn btn-light float-right"
+                    onClick={()=> setHideCart(prev=> !prev)} >
+                    <i class="fas fa-cart-plus "/><span className="ml-1">{cartItems.length}</span>
+                    </a>
+                    </div>
+                </div>
+            </div>
             <div className="row1">
                 {hideCart === true ?
                     <main className="container">

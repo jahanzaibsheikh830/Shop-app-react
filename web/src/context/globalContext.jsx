@@ -11,7 +11,7 @@ export function GlobalStateProvider({ children }) {
     user: null,
     loginStatus: false,
     role: null,
-    cartData: null
+    cartData: null,
   })
 
   useEffect(() => {
