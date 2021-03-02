@@ -45,15 +45,11 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 
 app.use(cors({
-    origin: ['http://localhost:3000',"https://login-system-jahan.herokuapp.com"],
+    origin: ['http://localhost:3000',"https://login-system-jahan.herokuapp.com/"],
     credentials: true
 }));
 app.use(morgan('dev'));
 app.use("/", express.static(path.resolve(path.join(__dirname, "./web/build"))));
-
-app.get('/', (req, res, next) => {
-    res.send("running")
-})
 
 app.use('/', authRoutes);
 app.use(function (req, res, next) {
