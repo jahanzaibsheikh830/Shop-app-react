@@ -1,23 +1,19 @@
 import React, { useState, useEffect } from "react";
 import Basket from './cart/Basket';
-import products from './data';
-import Navbar from '../Navbar/Navbar'
-import BaseUrl from '../../baseUrl/BaseUrl'
+import URL from '../../baseUrl/BaseUrl'
 import axios from 'axios'
-import { useHistory } from "react-router-dom"
 import { useGlobalState, useGlobalStateUpdate } from '../../context/globalContext'
 
 function Dashboard() {
     const globalState = useGlobalState()
     const globalStateUpdate = useGlobalStateUpdate()
-    let history = useHistory()
     const [hideCart, setHideCart] = useState(true)
     const [products, setProducts] = useState([])
     const [cartItems, setCartItems] = useState([]);
     useEffect(() => {
         axios({
             method: 'get',
-            url: 'http://localhost:5000/getProducts',
+            url: URL +'/getProducts',
             withCredentials: true
         }).then((response) => {
             // console.log(response.data.data)

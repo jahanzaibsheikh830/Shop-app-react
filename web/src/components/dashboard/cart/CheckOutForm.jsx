@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import axios from "axios"
 import { useGlobalState, useGlobalStateUpdate } from '../../../context/globalContext'
-import { set } from 'mongoose'
+import URL from '../../../baseUrl/BaseUrl'
 export default function CheckoutFrom() {
     const globalState = useGlobalState()
     const [msg,setMsg] = useState('')
@@ -14,7 +14,7 @@ export default function CheckoutFrom() {
         e.preventDefault()
         axios({
             method: 'post',
-            url: "http://localhost:5000/order",
+            url: URL+"/order",
             data: {
                 name: document.getElementById('name').value,
                 phone: document.getElementById('phone').value,

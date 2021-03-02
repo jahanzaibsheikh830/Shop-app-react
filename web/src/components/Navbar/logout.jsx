@@ -2,13 +2,14 @@ import React from 'react'
 import axios from 'axios'
 import {useHistory} from 'react-router-dom'
 import {useGlobalStateUpdate} from '../../context/globalContext'
+import URL from '../../baseUrl/BaseUrl'
 function Logout() {
     const globalStateUpdate = useGlobalStateUpdate()
     const history = useHistory()
     function logout() {
         axios({
             method: 'post',
-            url: 'http://localhost:5000/logout',
+            url: URL+'/logout',
             withCredentials: true
         }).then((response) => {
             console.log(response)

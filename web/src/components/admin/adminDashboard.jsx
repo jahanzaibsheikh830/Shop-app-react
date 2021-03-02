@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import axios from 'axios'
+import URL from '../../baseUrl/BaseUrl'
 function AdminDashboard() {
     let [orderData, setOrderData] = useState([])
     useEffect(() => {
         axios({
             method: 'get',
-            url: 'http://localhost:5000/getOrders',
+            url: URL+'/getOrders',
             withCredentials: true
         }).then((response) => {
             console.log(response.data.data)
@@ -18,7 +19,7 @@ function AdminDashboard() {
     function updateStatus(id) {
         axios({
             method: 'post',
-            url: 'http://localhost:5000/updateStatus',
+            url:  URL+'/updateStatus',
             data: {
                 id: id,
                 status: "Order confirmed"

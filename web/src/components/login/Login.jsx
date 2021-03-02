@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from "axios";
 import './Login.css'
+import URL from '../../baseUrl/BaseUrl'
 import { useGlobalState, useGlobalStateUpdate } from '../../context/globalContext'
 import {
     useHistory
 } from "react-router-dom";
 function Login() {
-    let url = 'http://localhost:5000'
     let [show, setShow] = useState()
     let history = useHistory()
     const globalState = useGlobalState()
@@ -16,7 +16,7 @@ function Login() {
         event.preventDefault();
         axios({
             method: 'post',
-            url: url + '/login',
+            url: URL + '/login',
             data: {
                 email: document.getElementById('email').value,
                 password: document.getElementById('password').value

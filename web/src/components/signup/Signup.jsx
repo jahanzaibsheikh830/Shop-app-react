@@ -4,8 +4,8 @@ import axios from "axios";
 import {
     useHistory
 } from "react-router-dom";
+import URL from '../../baseUrl/BaseUrl'
 function Signup() {
-    let url = 'http://localhost:5000'
     let [change, setChange] = useState(true)
     let [show, setShow] = useState()
 
@@ -29,7 +29,7 @@ function Signup() {
         }
         axios({
             method: 'post',
-            url: url + '/signup',
+            url: URL + '/signup',
             data: newData,
             withCredentials: true
         }).then((response) => {

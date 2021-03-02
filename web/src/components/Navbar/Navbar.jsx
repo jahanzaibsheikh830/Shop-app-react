@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from 'react-router-dom'
 import { useGlobalState } from '../../context/globalContext'
 import Logout from './logout'
-function Navbar(props) {
+function Navbar() {
     const globalState = useGlobalState()
     return (
         <div className='sticky-top'>
