@@ -40,11 +40,6 @@ app.use(cors({
 app.use(morgan('dev'));
 app.use("/", express.static(path.resolve(path.join(__dirname, "web/build"))));
 
-app.get('/', (req, res, next) => {
-    res.send("running")
-
-})
-
 app.use('/', authRoutes);
 app.use(function (req, res, next) {
     console.log(req.cookies.jToken)
