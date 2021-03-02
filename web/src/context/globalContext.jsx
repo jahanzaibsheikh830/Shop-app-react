@@ -1,6 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
 import axios from 'axios'
-import URL from '../baseUrl/BaseUrl'
 import url from "../baseUrl/BaseUrl";
 const GlobalStateContext = React.createContext()
 const GlobalStateUpdateContext = React.createContext()

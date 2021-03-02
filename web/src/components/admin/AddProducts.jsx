@@ -27,7 +27,6 @@ function AddProducts() {
             withCredentials: true
         })
             .then(response => {
-                console.log("response data=> ", response.data);
                 setMsg(response.data.message)
             })
             .catch(err => {

@@ -9,13 +9,11 @@ function MyOrders() {
             url: BaseUrl + '/myOrders',
             withCredentials: true
         }).then((response) => {
-            console.log(response)
             setMyOrders(response.data.data)
         }).catch((err) => {
             console.log(err)
         })
     }, [])
-    console.log(myOrder)
     return (
         <div>
             <div className="container">

@@ -5,18 +5,16 @@ import axios from 'axios'
 import { useGlobalState, useGlobalStateUpdate } from '../../context/globalContext'
 
 function Dashboard() {
-    const globalState = useGlobalState()
-    const globalStateUpdate = useGlobalStateUpdate()
+
     const [hideCart, setHideCart] = useState(true)
     const [products, setProducts] = useState([])
     const [cartItems, setCartItems] = useState([]);
     useEffect(() => {
         axios({
             method: 'get',
-            url: URL +'/getProducts',
+            url: URL + '/getProducts',
             withCredentials: true
         }).then((response) => {
-            // console.log(response.data.data)
             setProducts(response.data.data)
         }).catch((err) => {
             console.log(err)
@@ -25,8 +23,6 @@ function Dashboard() {
     ///////////////////////////////
     console.log(products)
     const onAdd = (product) => {
-        console.log(cartItems)
-
         const exist = cartItems.find((x) => x._id === product._id);
         if (exist) {
             setCartItems(
@@ -57,14 +53,13 @@ function Dashboard() {
 
     return (
         <div>
-            {/* <Navbar logout={logout} setCart={setHideCart} cartItemsLength={cartItems.length} /> */}
             <div className='bg-primary pt-3 pb-5 sticky-top'>
                 <div className="container">
                     <div className="col-md-12">
-                    <a className="btn btn-light float-right"
-                    onClick={()=> setHideCart(prev=> !prev)} >
-                    <i class="fas fa-cart-plus "/><span className="ml-1">{cartItems.length}</span>
-                    </a>
+                        <a className="btn btn-light float-right"
+                            onClick={() => setHideCart(prev => !prev)} >
+                            <i class="fas fa-cart-plus " /><span className="ml-1">{cartItems.length}</span>
+                        </a>
                     </div>
                 </div>
             </div>

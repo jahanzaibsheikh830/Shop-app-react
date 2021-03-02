@@ -12,7 +12,6 @@ function Logout() {
             url: URL+'/logout',
             withCredentials: true
         }).then((response) => {
-            console.log(response)
             globalStateUpdate(prev => ({
                 ...prev,
                 loginStatus: false,

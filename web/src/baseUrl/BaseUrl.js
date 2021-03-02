@@ -5,5 +5,4 @@ if (url[0] === "https") {
 else {
     url = "http://localhost:5000"
 }
- console.log('url is',url);
 export default url;

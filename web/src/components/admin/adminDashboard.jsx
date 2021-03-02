@@ -9,7 +9,6 @@ function AdminDashboard() {
             url: URL+'/getOrders',
             withCredentials: true
         }).then((response) => {
-            console.log(response.data.data)
             setOrderData(response.data.data)
         }).catch((err) => {
             console.log(err)
@@ -31,7 +30,6 @@ function AdminDashboard() {
             console.log(err)
         })
     }
-    console.log("Order data", orderData)
     return (
         <div>
             <div className="container">

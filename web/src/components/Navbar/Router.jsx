@@ -37,7 +37,6 @@ function RoutesConfig() {
                         <Route exact path="/" component={Dashboard} />
                         <Route path="/basket" component={Basket} />
                         <Route path="/myorders" component={MyOrders} />
-                        <Route path="/home" component={Home} />
                         <Route path="/checkoutform" component={CheckOutForm} />
                         <Route path="*" />
                         <Redirect to="/" />
