@@ -22,7 +22,7 @@ const storage = multer.diskStorage({ // https://www.npmjs.com/package/multer#dis
 
 var upload = multer({ storage: storage })
 
-var SERVICE_ACCOUNT = process.env.SERVICE_ACCOUNT
+var SERVICE_ACCOUNT = JSON.parse(process.env.SERVICE_ACCOUNT)
 
 admin.initializeApp({
     credential: admin.credential.cert(SERVICE_ACCOUNT),
