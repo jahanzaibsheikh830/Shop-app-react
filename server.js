@@ -22,13 +22,13 @@ const storage = multer.diskStorage({ // https://www.npmjs.com/package/multer#dis
 
 var upload = multer({ storage: storage })
 
-var SERVICE_ACCOUNT = 
+var SERVICE_ACCOUNT = process.env.SERVICE_ACCOUNT
 
 admin.initializeApp({
     credential: admin.credential.cert(SERVICE_ACCOUNT),
-    databaseURL: ""
+    databaseURL: process.env.databaseURL
 });
-const bucket = admin.storage().bucket("");
+const bucket = admin.storage().bucket(process.env.bucket);
 
 app.use(bodyParser.json());
 app.use(cookieParser());
