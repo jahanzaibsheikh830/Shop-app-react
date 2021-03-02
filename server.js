@@ -22,7 +22,7 @@ const storage = multer.diskStorage({ // https://www.npmjs.com/package/multer#dis
 
 var upload = multer({ storage: storage })
 
-var SERVICE_ACCOUNT =
+var SERVICE_ACCOUNT = 
 
 admin.initializeApp({
     credential: admin.credential.cert(SERVICE_ACCOUNT),
@@ -38,7 +38,7 @@ app.use(cors({
     credentials: true
 }));
 app.use(morgan('dev'));
-// app.use("/", express.static(path.resolve(path.join(__dirname, "public")));
+app.use("/", express.static(path.resolve(path.join(__dirname, "web/build"))));
 
 app.get('/', (req, res, next) => {
     res.send("running")
